@@ -26,7 +26,10 @@
             @foreach ($posts as $post) 
                 <div class="mb-4">
                     <a href="" class="font-bold">{{ $post->user->name }}</a>
-                    <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</span>
+                    <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }} </span>
+
+                    
+                </div>
 
                     <p class="mb-2">{{ $post->body  }}</p>
 
@@ -48,10 +51,18 @@
                         
                 
                         <span class="text-gray-600">{{ $post->likes->count()}} {{ Str::plural('like', $post->likes->count())}}</span>
+                        
+                                @can('delete', $post)
+                                    <form action="{{ route('posts.destroy', $post) }}" method="POST" class="ml-2 inline">
+                                        @csrf 
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                @endcan
+                            
                     </div>
 
                     
-                </div>
             @endforeach
 
             {{ $posts->links() }}
