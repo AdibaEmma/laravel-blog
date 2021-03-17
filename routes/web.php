@@ -28,6 +28,8 @@ Route::get('/', function() {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::delete('/posts/{post}', [UserPostController::class, 'destroy'])->name('users.posts');
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 

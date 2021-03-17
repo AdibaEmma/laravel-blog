@@ -50,7 +50,7 @@
                         @endauth
                         
                 
-                        <span class="text-gray-600">{{ $post->likes->count()}} {{ Str::plural('like', $post->likes->count())}}</span>
+                        <span class="text-gray-600 text-sm">{{ $post->likes->count()}} {{ Str::plural('like', $post->likes->count())}}</span>
                         
                                 @can('delete', $post)
                                     <form action="{{ route('posts.destroy', $post) }}" method="POST" class="ml-2 inline">
