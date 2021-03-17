@@ -31,18 +31,21 @@
                     <p class="mb-2">{{ $post->body  }}</p>
 
                     <div class="flex items-center">
-                        @if (!$post->likedBy(auth()->user()))
-                            <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-1">
-                                @csrf
-                                <button type="submit" class="text-blue-500"><i class="fas fa-thumbs-up"></i></button>
-                            </form>
-                        @else
-                        <form action="{{ route('posts.likes', $post) }}" method="post" class="ml-2 mr-2 mt-1">
-                            @csrf 
-                            @method('delete')
-                            <button type="submit" class="text-blue-500"><i class="fas fa-thumbs-down"></i></button>
-                        </form>
-                        @endif
+                        @auth
+                                @if (!$post->likedBy(auth()->user()))
+                                <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-1">
+                                    @csrf
+                                    <button type="submit" class="text-blue-500"><i class="fas fa-thumbs-up"></i></button>
+                                </form>
+                            @else
+                                <form action="{{ route('posts.likes', $post) }}" method="post" class="ml-2 mr-2 mt-1">
+                                    @csrf 
+                                    @method('DELETE')
+                                    <button type="submit" class="text-blue-500"><i class="fas fa-thumbs-down"></i></button>
+                                </form>
+                            @endif
+                        @endauth
+                        
                 
                         <span class="text-gray-600">{{ $post->likes->count()}} {{ Str::plural('like', $post->likes->count())}}</span>
                     </div>
