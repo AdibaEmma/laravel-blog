@@ -8,10 +8,17 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct() {
+
+        $this->middleware(['auth']);
+
+    }
+
     public function index() {
 
-        $posts = Post::get(); // get all posts.
+        $posts = Post::paginate(2); // get all posts.
 
+        
         return view('posts.index', [
             'posts' => $posts
         ]);
