@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class UserPostController extends Controller
 {
-   public function show(User $user) {
+    public function index(User $user) {
 
-       dd($user);
-
-   }
+        return view('user.posts.index', [
+            'user' => $user,
+        ]);
+    }
 }
