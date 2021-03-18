@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    // public function __construct() {
+    public function __construct() {
 
-    //     $this->middleware(['auth']);
+        $this->middleware(['auth'])->only(['store', 'destroy']);
 
-    // }
+    }
 
     public function index() {
 
