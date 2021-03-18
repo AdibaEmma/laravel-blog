@@ -28,6 +28,7 @@
 
         <span class="text-gray-600 text-sm">{{ $post->likes->count()}} {{ Str::plural('like', $post->likes->count())}}</span>
         
+                <span class="text-gray-400 ml-2 mr-2 inline"><a href="{{ route('posts.show', $post->id) }}"><i class="fas fa-eye"></i></a></span>
                 @can('delete', $post)
                     <form action="{{ route('posts.destroy', $post) }}" method="POST" class="ml-2 inline">
                         @csrf 
